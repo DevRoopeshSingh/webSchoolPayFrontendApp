@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route,BrowserRouter, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Navigate, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AdminDashboard from './pages/AdminDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
@@ -14,16 +14,15 @@ import Logout from './pages/Logout';
 import Students from './pages/Students';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute'; // Make sure to import PrivateRoute
+import PrivateRoute from './components/PrivateRoute'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  // Function to handle successful login and navigation to the dashboard
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    navigate('/dashboard'); // Navigate to the dashboard page
+    navigate('/dashboard');
   };
 
   return (
@@ -38,17 +37,94 @@ function App() {
               <Layout>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
-                  <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/admin" element={<PrivateRoute element={<AdminDashboard />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/teacher" element={<PrivateRoute element={<TeacherDashboard />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/student" element={<PrivateRoute element={<StudentDashboard />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/parents" element={<PrivateRoute element={<ParentDashboard />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/user" element={<PrivateRoute element={<UserManagement />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/students" element={<PrivateRoute element={<Students />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/fees" element={<PrivateRoute element={<Fees />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/payments" element={<PrivateRoute element={<Payments />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/settings" element={<PrivateRoute element={<Settings />} isAuthenticated={isLoggedIn} />} />
-                  <Route path="/logout" element={<PrivateRoute element={<Logout />} isAuthenticated={isLoggedIn} />} />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Dashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <AdminDashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/teacher"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <TeacherDashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/student"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <StudentDashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/parents"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <ParentDashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/users"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <UserManagement />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/students"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Students />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/fees"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Fees />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/payments"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Payments />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/settings"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Settings />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/logout"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <Logout />
+                      </PrivateRoute>
+                    }
+                  />
                 </Routes>
               </Layout>
             </>
