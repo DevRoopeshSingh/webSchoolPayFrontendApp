@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import DataTable from '../DataTable/DataTable';
+import UserForm from './UserFormComponent';
+
 
 const UserManagement = () => {
-  const history = useHistory();
   const initialPeople = [
     {
       name: 'Jane Cooper',
@@ -35,6 +35,7 @@ const UserManagement = () => {
 
   const [people, setPeople] = useState(initialPeople);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Function to handle search input change
   const handleSearchChange = (e) => {
@@ -46,9 +47,15 @@ const UserManagement = () => {
     person.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Function to navigate to the new user form
-  const handleAddUser = () => {
-    history.push('/add-user');
+  // Function to handle form save
+  const handleSaveUser = (newUser) => {
+    setPeople([...people, newUser]);
+    setIsFormOpen(false);
+  };
+
+  // Function to handle form cancel
+  const handleCancel = () => {
+    setIsFormOpen(false);
   };
 
   return (
@@ -67,12 +74,13 @@ const UserManagement = () => {
         </div>
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center"
-          onClick={handleAddUser}
+          onClick={() => setIsFormOpen(true)}
         >
           <FaPlus className="mr-2" /> Add User
         </button>
       </div>
       <DataTable people={filteredPeople} />
+      {isFormOpen && <UserForm onSave={handleSaveUser} onCancel={handleCancel} />}
     </div>
   );
 };

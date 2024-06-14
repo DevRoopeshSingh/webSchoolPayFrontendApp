@@ -40,6 +40,12 @@ const EditForm = ({ rowData, onSave, onCancel }) => {
     onSave(formData);
   };
 
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(formData);
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-9/12">
@@ -229,6 +235,13 @@ const EditForm = ({ rowData, onSave, onCancel }) => {
               className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleDelete}
+              className="inline-flex justify-center py-2 px-4 border border-red-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+             >
+              Delete
             </button>
           </div>
         </form>

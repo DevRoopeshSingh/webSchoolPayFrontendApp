@@ -1,31 +1,30 @@
+import React from 'react';
 
-
-const Dashboard = () => {
+const DashboardOverview = () => {
   return (
-    <div className="flex h-screen">
-      
-
-      {/* Main Content */}
-      <div className="flex-1 p-6">
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800">Dashboard</h2>
-          <p className="text-sm text-gray-600">Welcome back, Admin!</p>
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h2 className="text-2xl font-semibold mb-4">Dashboard</h2>
+      <div className="grid grid-cols-3 gap-4">
+        {/* Statistics Cards */}
+        <div className="p-4 bg-white shadow rounded-lg">
+          <h3 className="text-lg font-medium">Total Users</h3>
+          <p className="text-2xl">1,234</p>
         </div>
-        
-        {/* Summary of Student Data */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Student Data Summary</h3>
-          {/* Charts for Student Demographics and Fee Payments */}
-          {/* Placeholder for charts */}
-          <div className="flex justify-center">
-            <div className="w-1/2 h-64 bg-gray-200 rounded-md"></div>
-            <div className="w-1/2 h-64 bg-gray-200 rounded-md"></div>
-          </div>
+        <div className="p-4 bg-white shadow rounded-lg">
+          <h3 className="text-lg font-medium">Total Schools</h3>
+          <p className="text-2xl">56</p>
+        </div>
+        <div className="p-4 bg-white shadow rounded-lg">
+          <h3 className="text-lg font-medium">Recent Activities</h3>
+          <ul className="text-sm">
+            <li>User John Doe added</li>
+            <li>School ABC updated</li>
+            <li>User Jane Smith deleted</li>
+          </ul>
         </div>
       </div>
     </div>
   );
 };
 
-export default Dashboard;
-
+export default DashboardOverview;
