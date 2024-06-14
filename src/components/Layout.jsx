@@ -26,27 +26,17 @@ const Layout = ({ children }) => {
     return initials.join('').toUpperCase();
   };
 
-  // Function to generate a lettered avatar
-  const generateAvatar = (initials) => {
-    const colors = [
-      'bg-blue-500',
-      'bg-green-500',
-      'bg-yellow-500',
-      'bg-purple-500',
-      'bg-red-500',
-      'bg-indigo-500',
-      'bg-pink-500',
-      'bg-gray-500',
-    ];
-    // Choose a random color from the colors array
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    return (
-      <div className={`h-20 w-20 rounded-full flex items-center justify-center ${randomColor}`}>
-        <span className="text-white font-bold text-lg">{initials}</span>
-      </div>
-    );
+  const hashStringToColor = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const color = `hsl(${hash % 360}, 75%, 50%)`;
+    return color;
   };
 
+  const initials = getInitials(loggedInUser.name);
+  const avatarColor = hashStringToColor(loggedInUser.name);
 
   return (
     <div className="flex">
@@ -54,12 +44,12 @@ const Layout = ({ children }) => {
       <div className="w-64 bg-gray-100 border-r border-gray-200">
         <div className="py-4 px-6">
         <div className="flex flex-col items-center">
-            {/* <img
-              className="h-20 w-20 rounded-full object-cover"
-              src={loggedInUser.image}
-              alt={loggedInUser.name}
-            /> */}
-            {generateAvatar(getInitials(loggedInUser.name))}
+          <div
+              className="h-20 w-20 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: avatarColor }}
+            >
+              <span className="text-white font-bold text-lg">{initials}</span>
+            </div>
             <h1 className="text-lg font-semibold text-gray-800 mt-2">{loggedInUser.name}</h1>
             <h2 className="text-sm text-gray-600">{loggedInUser.designation}</h2>
           </div>

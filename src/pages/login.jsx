@@ -35,9 +35,6 @@ const Login = ({ login, setIsLoggedIn }) => {
     }
   };
 
-  
-  
-
   return (
     <div className="flex justify-center items-center h-screen bg-blue-100">
       <div className="w-full max-w-xs bg-white shadow-md rounded-md p-6">
@@ -71,13 +68,13 @@ const Login = ({ login, setIsLoggedIn }) => {
           </label>
           {error && <p className="text-red-500 mb-2">{error}</p>}
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 w-full"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 w-full transition duration-300 ease-in-out transform hover:scale-105"
             type="submit"
           >
             Login
           </button>
           <button
-            className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md mt-2 w-full"
+            className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md mt-2 w-full transition duration-300 ease-in-out transform hover:scale-105"
             type="button"
             onClick={() => {
               // Handle forgot password action here

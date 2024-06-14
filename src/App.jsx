@@ -15,6 +15,8 @@ import Students from './pages/Students';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute'; 
+import UserForm from './components/UserFormComponent';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,6 +25,14 @@ function App() {
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     navigate('/dashboard');
+  };
+
+  const handleSaveUser = (user) => {
+    console.log('User saved:', user);
+  };
+
+  const handleCancel = () => {
+    console.log('Cancel clicked');
   };
 
   return (
