@@ -48,8 +48,8 @@ const DataTable = ({ people }) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.map(person => (
-                  <DataRow key={person.email} person={person} onEdit={handleEdit} />
+                {people.map((person,index )=> (
+                  <DataRow key={`${person.email}-${index}`} person={person} onEdit={handleEdit} />
                 ))}
               </tbody>
             </table>

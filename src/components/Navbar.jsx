@@ -1,29 +1,69 @@
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaUser, FaUserShield, FaChalkboardTeacher, FaUserGraduate, FaUserFriends, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 
 function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
-    // <nav className="bg-blue-600 p-4 rounded-sm">
-    //   <div className="container mx-auto flex justify-between items-center">
-    //     <Link to="/" className="text-white text-lg font-bold">School App</Link>
-    //     <div className="space-x-4">
-    //       <Link to="/users" className="text-white">User Management</Link>
-    //       <Link to="/admin" className="text-white">Admin</Link>
-    //       <Link to="/teacher" className="text-white">Teacher</Link>
-    //       <Link to="/student" className="text-white">Student</Link>
-    //       <Link to="/parent" className="text-white">Parent</Link>
-    //     </div>
-    //   </div>
-    // </nav>
     <div className="flex items-center justify-between h-16 px-4 bg-blue-500">
-            <Link to="/" className="text-white text-lg font-bold">School Pay App</Link>
-            <div className="flex items-center text-white">
-              <Link to="/users" className="ml-4 hover:text-gray-300">User Management</Link>
-              <Link to="/admin" className="ml-4 hover:text-gray-300">Admin</Link>
-              <Link to="/teacher" className="ml-4 hover:text-gray-300">Teacher</Link>
-              <Link to="/student" className="ml-4 hover:text-gray-300">Student</Link>
-              <Link to="/parent" className="ml-4 hover:text-gray-300">Parent</Link>
+      <Link to="/" className="text-white text-lg font-bold">School Pay App</Link>
+      <div className="flex items-center text-white">
+        <div className="relative ml-4" ref={dropdownRef}>
+          <button
+            onClick={toggleDropdown}
+            className="flex items-center hover:text-gray-300 focus:outline-none"
+          >
+            <span>Roles</span>
+            <FaChevronDown className="ml-2" />
+          </button>
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
+              <Link to="/users" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaUser className="mr-2" /> User Management
+              </Link>
+              <Link to="/superadmin" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaUserShield className="mr-2" /> Super Admin
+              </Link>
+              <Link to="/admin" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaUserShield className="mr-2" /> Admin
+              </Link>
+              <Link to="/teacher" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaChalkboardTeacher className="mr-2" /> Teacher
+              </Link>
+              <Link to="/student" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaUserGraduate className="mr-2" /> Student
+              </Link>
+              <Link to="/parent" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+                <FaUserFriends className="mr-2" /> Parent
+              </Link>
             </div>
-          </div>
+          )}
+        </div>
+        <button className="ml-4 bg-red-500 text-white px-4 py-2 rounded-md flex items-center">
+          <FaSignOutAlt className="mr-2" /> Logout
+        </button>
+      </div>
+    </div>
   );
 }
 

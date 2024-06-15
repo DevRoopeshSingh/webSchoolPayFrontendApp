@@ -11,6 +11,7 @@ const UserManagement = () => {
       title: 'Regional Paradigm Technician',
       department: 'Optimization',
       role: 'Admin',
+      status:'active',
       email: 'jane.cooper@example.com',
       image: 'https://bit.ly/33HnjK0',
     },
@@ -19,6 +20,7 @@ const UserManagement = () => {
       title: 'Regional Paradigm Technician',
       department: 'Optimization',
       role: 'Tester',
+      status:'active',
       email: 'john.doe@example.com',
       image: 'https://bit.ly/3I9nL2D',
     },
@@ -27,10 +29,63 @@ const UserManagement = () => {
       title: 'Regional Paradigm Technician',
       department: 'Optimization',
       role: 'Software Engineer',
+      status:'active',
       email: 'veronica.lodge@example.com',
       image: 'https://bit.ly/3vaOTe1',
     },
-    // More people...
+    {
+      name: 'Ronny Dillon',
+      title: 'Paradigm Technician',
+      department: 'Optimization',
+      role: 'Teacher',
+      status:'deactive',
+      email: 'veronica.lodge@example.com',
+      image: 'https://bit.ly/3vaOTe1',
+    },{
+      "name": "Ronny Dillon",
+      "title": "Paradigm Technician",
+      "department": "Optimization",
+      "role": "Teacher",
+      "status": "active",
+      "email": "veronica.lodge@example.com",
+      "image": "https://bit.ly/3vaOTe1"
+  },
+  {
+      "name": "Neha Sharma",
+      "title": "Data Analyst",
+      "department": "Analytics",
+      "role": "Analyst",
+      "status": "deactive",
+      "email": "neha.sharma@example.com",
+      "image": "https://bit.ly/3dzB82Z"
+  },
+  {
+      "name": "Raj Singh",
+      "title": "Software Engineer",
+      "department": "Engineering",
+      "role": "Developer",
+      "status": "active",
+      "email": "raj.singh@example.com",
+      "image": "https://bit.ly/3fQNJQm"
+  },
+  {
+    "name": "Rahul Sharma",
+    "title": "Software Engineer",
+    "department": "Development",
+    "role": "Developer",
+    "status": "deactive",
+    "email": "rahul.sharma@example.com",
+    "image": "https://bit.ly/3vaOTe1"
+},
+{
+  "name": "Priya Patel",
+  "title": "Data Analyst",
+  "department": "Analytics",
+  "role": "Analyst",
+  "status": "active",
+  "email": "priya.patel@example.com",
+  "image": "https://bit.ly/3vaOTe1"
+}
   ];
 
   const [people, setPeople] = useState(initialPeople);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, BrowserRouter, Navigate, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import SuperAdminPage from './pages/SuperAdminPage';
 import AdminDashboard from './pages/AdminDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import StudentDashboard from './pages/StudentDashboard';
@@ -52,6 +53,14 @@ function App() {
                     element={
                       <PrivateRoute isAuthenticated={isLoggedIn}>
                         <Dashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/superadmin"
+                    element={
+                      <PrivateRoute isAuthenticated={isLoggedIn}>
+                        <SuperAdminPage />
                       </PrivateRoute>
                     }
                   />

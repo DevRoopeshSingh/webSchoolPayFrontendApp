@@ -1,15 +1,16 @@
 import React from 'react';
-import { Link,useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { FaHome, FaUserGraduate, FaMoneyBillWave, FaMoneyCheckAlt, FaCog, FaChalkboardTeacher } from 'react-icons/fa';
 
 const Layout = ({ children }) => {
 
   const menuItems = [
-    { path: '/', label: 'Dashboard' },
-    { path: '/students', label: 'Students' },
-    { path: '/fees', label: 'Fees' },
-    { path: '/payments', label: 'Payments' },
-    { path: '/settings', label: 'Settings' },
-    { path: '/logout', label: 'Logout' },
+    { path: '/', label: 'Dashboard', icon: FaHome },
+    { path: '/students', label: 'Students', icon: FaUserGraduate },
+    { path: '/fees', label: 'Fees', icon: FaMoneyBillWave },
+    { path: '/payments', label: 'Payments', icon: FaMoneyCheckAlt },
+    { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
+    { path: '/settings', label: 'Settings', icon: FaCog },
   ];
 
   const loggedInUser = {
@@ -43,8 +44,8 @@ const Layout = ({ children }) => {
       {/* Sidebar */}
       <div className="w-64 bg-gray-100 border-r border-gray-200">
         <div className="py-4 px-6">
-        <div className="flex flex-col items-center">
-          <div
+          <div className="flex flex-col items-center">
+            <div
               className="h-20 w-20 rounded-full flex items-center justify-center"
               style={{ backgroundColor: avatarColor }}
             >
@@ -54,21 +55,22 @@ const Layout = ({ children }) => {
             <h2 className="text-sm text-gray-600">{loggedInUser.designation}</h2>
           </div>
         </div>
-  <nav className="mt-6 min-h-full">
-    {/* Map over the menuItems array to generate the links */}
-    {menuItems.map((item, index) => (
-      <React.Fragment key={index}>
-        <Link
-          to={item.path}
-          className={`block py-2 px-4 text-sm text-gray-700 ${location.pathname === item.path ? 'bg-blue-200' : 'hover:bg-blue-200 hover:text-gray-900'}`}
-        >
-          {item.label}
-        </Link>
-        {index !== menuItems.length - 1 && <hr className="border-gray-300" />}
-      </React.Fragment>
-    ))}
-  </nav>
-</div>
+        <nav className="mt-6 min-h-full">
+          {/* Map over the menuItems array to generate the links */}
+          {menuItems.map((item, index) => (
+            <React.Fragment key={index}>
+              <Link
+                to={item.path}
+                className={`flex items-center py-2 px-4 text-sm text-gray-700 ${location.pathname === item.path ? 'bg-blue-200' : 'hover:bg-blue-200 hover:text-gray-900'}`}
+              >
+                <item.icon className="mr-2 text-xl" />
+                <span>{item.label}</span>
+              </Link>
+              {index !== menuItems.length - 1 && <hr className="border-gray-300" />}
+            </React.Fragment>
+          ))}
+        </nav>
+      </div>
       {/* Main Content */}
       <div className="flex-1">
         {children}
