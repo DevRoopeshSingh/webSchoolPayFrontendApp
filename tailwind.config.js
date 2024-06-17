@@ -11,7 +11,7 @@ module.exports = withMT({
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
+        sans: ["Open Sans", "sans-serif"],
       },
       fontSize: {
         'xs': '.75rem',
@@ -28,6 +28,15 @@ module.exports = withMT({
         '8xl': '6rem',
         '9xl': '7rem',
       },
+      boxShadow: {
+        "sm": "0 2px 4px 0 rgb(0 0 0 / 0.05)",
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        // rest of the box shadow values
+      },
+      screens: {
+        sm: "640px",
+        "3xl": "1600px",
+      }
     },
   },
   plugins: [],

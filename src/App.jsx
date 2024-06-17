@@ -39,6 +39,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login setIsLoggedIn={handleLoginSuccess} />} />
+      <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
       <Route
         path="*"
         element={
@@ -136,14 +137,7 @@ function App() {
                       </PrivateRoute>
                     }
                   />
-                  <Route
-                    path="/logout"
-                    element={
-                      <PrivateRoute isAuthenticated={isLoggedIn}>
-                        <Logout />
-                      </PrivateRoute>
-                    }
-                  />
+                  
                 </Routes>
               </Layout>
             </>

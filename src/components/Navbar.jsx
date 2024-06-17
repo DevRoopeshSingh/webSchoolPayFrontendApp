@@ -38,30 +38,30 @@ function Navbar() {
           </button>
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
-              <Link to="/users" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/users" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUser className="mr-2" /> User Management
               </Link>
-              <Link to="/superadmin" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/superadmin" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserShield className="mr-2" /> Super Admin
               </Link>
-              <Link to="/admin" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/admin" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserShield className="mr-2" /> Admin
               </Link>
-              <Link to="/teacher" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/teacher" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaChalkboardTeacher className="mr-2" /> Teacher
               </Link>
-              <Link to="/student" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/student" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserGraduate className="mr-2" /> Student
               </Link>
-              <Link to="/parent" className="block px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/parent" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserFriends className="mr-2" /> Parent
               </Link>
             </div>
           )}
         </div>
-        <button className="ml-4 bg-red-500 text-white px-4 py-2 rounded-md flex items-center">
+        <Link to="/logout" className="ml-4 bg-red-500 text-white px-4 py-2 rounded-md flex items-center hover:bg-red-700 focus:outline-none">
           <FaSignOutAlt className="mr-2" /> Logout
-        </button>
+        </Link>
       </div>
     </div>
   );
