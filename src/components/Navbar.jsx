@@ -53,7 +53,7 @@ function Navbar() {
               <Link to="/student" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserGraduate className="mr-2" /> Student
               </Link>
-              <Link to="/parent" className="px-4 py-2 hover:bg-gray-200 flex items-center">
+              <Link to="/parents" className="px-4 py-2 hover:bg-gray-200 flex items-center">
                 <FaUserFriends className="mr-2" /> Parent
               </Link>
             </div>

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useLoading } from '../Global/LoadingContext';
 
 const Login = ({ login, setIsLoggedIn }) => {
   const [credentials, setCredentials] = useState({
     emailOrMobile: '',
     password: '',
   });
+
+  const { showLoading, hideLoading } = useLoading();
 
   const [error, setError] = useState('');
 
@@ -18,11 +21,16 @@ const Login = ({ login, setIsLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+   // showLoading();
 
     try {
-      // Call the login function from props with credentials
-      //await login(credentials);
+      // Simulate an API call
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Replace this with your API call
+      // Your API call logic goes here, e.g., await login(credentials);
+
+      // Simulate successful login for demo purposes
       setIsLoggedIn();
+
       // Clear the input fields after successful login
       setCredentials({
         emailOrMobile: '',
@@ -32,6 +40,8 @@ const Login = ({ login, setIsLoggedIn }) => {
     } catch (error) {
       // Handle login error
       setError('Invalid email/mobile or password. Please try again.');
+    } finally {
+     // setTimeout(hideLoading, 2000);
     }
   };
 

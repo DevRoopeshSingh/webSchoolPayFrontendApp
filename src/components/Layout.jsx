@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaUserGraduate, FaMoneyBillWave, FaMoneyCheckAlt, FaCog, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaHome,FaChalkboard, FaUserGraduate, FaChalkboardTeacher, FaExclamationCircle, FaCommentDots, FaMoneyBillWave, FaMoneyCheckAlt, FaCog, FaBars, FaTimes } from 'react-icons/fa';
 
 const Layout = ({ children }) => {
 
   const menuItems = [
     { path: '/', label: 'Dashboard', icon: FaHome },
+    { path: '/classes', label: 'Classes', icon: FaChalkboard },
     { path: '/students', label: 'Students', icon: FaUserGraduate },
+    { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
+    { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
+    { path: '/complain', label: 'Complaints', icon: FaCommentDots },
     { path: '/fees', label: 'Fees', icon: FaMoneyBillWave },
     { path: '/payments', label: 'Payments', icon: FaMoneyCheckAlt },
-    { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
     { path: '/settings', label: 'Settings', icon: FaCog },
   ];
 

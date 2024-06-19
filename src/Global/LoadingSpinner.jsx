@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoading } from '../context/LoadingContext';
+import { useLoading } from '../Global/LoadingContext';
 import { Spinner } from "@material-tailwind/react";
 
 const LoadingSpinner = () => {
@@ -13,5 +13,4 @@ const LoadingSpinner = () => {
     </div>
   );
 };
-
 export default LoadingSpinner;

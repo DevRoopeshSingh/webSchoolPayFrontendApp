@@ -4,14 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { ThemeProvider } from "@material-tailwind/react";
+import LoadingSpinner from './Global/LoadingSpinner';
+import { LoadingProvider } from './Global/LoadingContext';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter> 
-          <App />
-        </BrowserRouter>
+      <LoadingProvider>
+        <BrowserRouter>
+          <LoadingSpinner /> 
+            <App />
+          </BrowserRouter>
+        </LoadingProvider>
       </ThemeProvider>
     </React.StrictMode>
 );
