@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { BsFillPersonFill, BsPeopleFill } from 'react-icons/bs'; // Import icons from React Icons
+import { BsFillPersonFill, BsPeopleFill } from 'react-icons/bs';
 import DashboardOverview from '../components/DashboardOverview';
 import ClassList from '../components/ClassList';
 import StudentList from '../components/StudentList';
 import AttendanceTracking from '../components/AttendanceTracking';
 
 const TeacherDashboard = () => {
-  // Sample state data (can be fetched from API)
-  const [activeTab, setActiveTab] = useState('classes'); // State to track active tab
-
+  const [activeTab, setActiveTab] = useState('classes');
   const [classes, setClasses] = useState([
     { id: 1, name: 'Class A', grade: '5', teacher: 'Mr. Smith' },
     { id: 2, name: 'Class B', grade: '6', teacher: 'Ms. Johnson' },
@@ -23,44 +21,43 @@ const TeacherDashboard = () => {
     setActiveTab(tab);
   };
 
-  // Dummy stats for DashboardOverview component
   const stats = {
     totalClasses: classes.length,
     totalStudents: students.length,
-    classesTaught: 2, // Dummy data for demonstration
-    upcomingEvents: 3, // Dummy data for demonstration
+    classesTaught: 2,
+    upcomingEvents: 3,
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Teacher Dashboard</h1>
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-8">Teacher Dashboard</h1>
       <DashboardOverview stats={stats} />
 
-      {/* Tabs */}
-      <div className="flex gap-4 mt-8 mb-4">
-        <button
-          onClick={() => handleTabClick('classes')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'classes' ? 'bg-gray-200' : ''}`}
-        >
-          <BsPeopleFill className="text-2xl text-green-600 mr-2" />
-          Manage Classes
-        </button>
-        <button
-          onClick={() => handleTabClick('students')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'students' ? 'bg-gray-200' : ''}`}
-        >
-          <BsFillPersonFill className="text-2xl text-indigo-600 mr-2" />
-          Manage Students
-        </button>
-        <button
-          onClick={() => handleTabClick('attendance')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'attendance' ? 'bg-gray-200' : ''}`}
-        >
-          Attendance Tracking
-        </button>
+      <div className="grid grid-cols-1 gap-8 mt-8">
+        <div className="flex gap-4 mb-8">
+          <button
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'classes' ? 'bg-gray-200 border-b-4 border-green-600' : ''}`}
+            onClick={() => handleTabClick('classes')}
+          >
+            <BsPeopleFill className="text-4xl text-green-600 mr-2" />
+            Manage Classes
+          </button>
+          <button
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'students' ? 'bg-gray-200 border-b-4 border-indigo-600' : ''}`}
+            onClick={() => handleTabClick('students')}
+          >
+            <BsFillPersonFill className="text-4xl text-indigo-600 mr-2" />
+            Manage Students
+          </button>
+          <button
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'attendance' ? 'bg-gray-200 border-b-4 border-yellow-600' : ''}`}
+            onClick={() => handleTabClick('attendance')}
+          >
+            Attendance Tracking
+          </button>
+        </div>
       </div>
 
-      {/* Tab Content */}
       <div>
         {activeTab === 'classes' && (
           <div>

@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
-import { BsFillPersonFill } from 'react-icons/bs'; // Import icons from React Icons
+import { BsFillPersonFill } from 'react-icons/bs';
 import DashboardOverview from '../components/DashboardOverview';
 import ChildInformation from '../components/ChildInformation';
 import ChildFeeDetails from '../components/ChildFeeDetails';
 import PaymentForm from '../components/PaymentFormPage';
 
 const ParentDashboard = () => {
-  // Sample state data (can be fetched from API)
-  const [activeTab, setActiveTab] = useState('childInformation'); // State to track active tab
+  const [activeTab, setActiveTab] = useState('childInformation');
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Parents' Dashboard</h1>
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-8">Parents' Dashboard</h1>
       <DashboardOverview />
 
       {/* Tabs */}
-      <div className="flex gap-4 mt-8 mb-4">
-        <button
-          onClick={() => handleTabClick('childInformation')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'childInformation' ? 'bg-gray-200' : ''}`}
-        >
-          <BsFillPersonFill className="text-2xl text-green-600 mr-2" />
-          View Child's Information
-        </button>
-        <button
-          onClick={() => handleTabClick('childFeeDetails')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'childFeeDetails' ? 'bg-gray-200' : ''}`}
-        >
-          View Child's Fee Details
-        </button>
-        <button
-          onClick={() => handleTabClick('makePayment')}
-          className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'makePayment' ? 'bg-gray-200' : ''}`}
-        >
-          Make Payments
-        </button>
+      <div className="grid grid-cols-1 gap-8 mt-8 mb-4">
+        <div className="flex gap-4 mb-8">
+          <button
+            onClick={() => handleTabClick('childInformation')}
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'childInformation' ? 'bg-gray-200 border-b-4 border-blue-600' : ''}`}
+          >
+            <BsFillPersonFill className="text-4xl text-green-600 mr-2" />
+            View Child's Information
+          </button>
+          <button
+            onClick={() => handleTabClick('childFeeDetails')}
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'childFeeDetails' ? 'bg-gray-200 border-b-4 border-green-600' : ''}`}
+          >
+            View Child's Fee Details
+          </button>
+          <button
+            onClick={() => handleTabClick('makePayment')}
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'makePayment' ? 'bg-gray-200 border-b-4 border-indigo-600' : ''}`}
+          >
+            Make Payments
+          </button>
+        </div>
       </div>
 
       {/* Tab Content */}

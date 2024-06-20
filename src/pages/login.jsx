@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLoading } from '../Global/LoadingContext';
 
-const Login = ({ login, setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setUser }) => {
   const [credentials, setCredentials] = useState({
     emailOrMobile: '',
     password: '',
   });
 
   const { showLoading, hideLoading } = useLoading();
-
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,15 +22,37 @@ const Login = ({ login, setIsLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   // showLoading();
+    showLoading();
 
     try {
       // Simulate an API call
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Replace this with your API call
-      // Your API call logic goes here, e.g., await login(credentials);
+      const user = await mockApiLogin(credentials); // Replace this with your actual API call
 
-      // Simulate successful login for demo purposes
-      setIsLoggedIn();
+      // If login is successful, set the user in state and mark as logged in
+      setUser(user);
+      setIsLoggedIn(user);
+
+      // Redirect based on the user's role
+      switch (user.role) {
+        case 'Super Admin':
+          navigate('/superadmin');
+          break;
+        case 'Admin':
+          navigate('/admin');
+          break;
+        case 'Teacher':
+          navigate('/teacher');
+          break;
+        case 'Student':
+          navigate('/student');
+          break;
+        case 'Parent':
+          navigate('/parents');
+          break;
+        default:
+          navigate('/dashboard');
+          break;
+      }
 
       // Clear the input fields after successful login
       setCredentials({
@@ -41,7 +64,7 @@ const Login = ({ login, setIsLoggedIn }) => {
       // Handle login error
       setError('Invalid email/mobile or password. Please try again.');
     } finally {
-     // setTimeout(hideLoading, 2000);
+      hideLoading();
     }
   };
 
@@ -97,6 +120,43 @@ const Login = ({ login, setIsLoggedIn }) => {
       </div>
     </div>
   );
+};
+
+// Mock function to simulate API login
+const mockApiLogin = async (credentials) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const { emailOrMobile, password } = credentials;
+      if (emailOrMobile === 'superadmin@example.com' && password === 'password') {
+        resolve({
+          name: 'Super Admin',
+          role: 'SuperAdmin',
+        });
+      } else if (emailOrMobile === 'admin@example.com' && password === 'password') {
+        resolve({
+          name: 'Admin',
+          role: 'Admin',
+        });
+      } else if (emailOrMobile === 'teacher@example.com' && password === 'password') {
+        resolve({
+          name: 'Teacher',
+          role: 'Teacher',
+        });
+      } else if (emailOrMobile === 'student@example.com' && password === 'password') {
+        resolve({
+          name: 'Student',
+          role: 'Student',
+        });
+      } else if (emailOrMobile === 'parent@example.com' && password === 'password') {
+        resolve({
+          name: 'Parent',
+          role: 'Parent',
+        });
+      } else {
+        reject(new Error('Invalid email/mobile or password'));
+      }
+    }, 2000);
+  });
 };
 
 export default Login;

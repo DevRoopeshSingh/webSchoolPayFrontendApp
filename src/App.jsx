@@ -15,37 +15,29 @@ import Logout from './pages/Logout';
 import Students from './pages/Students';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute'; 
-// import UserForm from './components/UserFormComponent';
-
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (user) => {
     setIsLoggedIn(true);
+    setUser(user);
     navigate('/dashboard');
-  };
-
-  const handleSaveUser = (user) => {
-    console.log('User saved:', user);
-  };
-
-  const handleCancel = () => {
-    console.log('Cancel clicked');
   };
 
   return (
     <Routes>
-      <Route path="/login" element={<Login setIsLoggedIn={handleLoginSuccess} />} />
+      <Route path="/login" element={<Login setIsLoggedIn={handleLoginSuccess} setUser={setUser} />} />
       <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
       <Route
         path="*"
         element={
           isLoggedIn ? (
             <>
-              <Navbar />
+              <Navbar loggedInUser={user || { name: 'Guest Guest', designation: 'User'}}/>
               <Layout>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
@@ -137,7 +129,6 @@ function App() {
                       </PrivateRoute>
                     }
                   />
-                  
                 </Routes>
               </Layout>
             </>

@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
     <div className="flex">
       {/* Sidebar */}
       <div className="w-64 bg-gray-100 border-r border-gray-200">
-        <div className="py-4 px-6">
+        {/* <div className="py-4 px-6">
           <div className="flex flex-col items-center">
             <div
               className="h-20 w-20 rounded-full flex items-center justify-center"
@@ -57,7 +57,7 @@ const Layout = ({ children }) => {
             <h1 className="text-lg font-semibold text-gray-800 mt-2">{loggedInUser.name}</h1>
             <h2 className="text-sm text-gray-600">{loggedInUser.designation}</h2>
           </div>
-        </div>
+        </div> */}
         <nav className="mt-6 min-h-full">
           {/* Map over the menuItems array to generate the links */}
           {menuItems.map((item, index) => (
