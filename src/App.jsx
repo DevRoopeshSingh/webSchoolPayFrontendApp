@@ -15,7 +15,9 @@ import Logout from './pages/Logout';
 import Students from './pages/Students';
 import Layout from './components/Layout';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import PrivateRoute from './components/PrivateRoute';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,23 +34,20 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login setIsLoggedIn={handleLoginSuccess} setUser={setUser} />} />
       <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/signup" element={<SignUp setIsLoggedIn={handleLoginSuccess} setUser={setUser} />} />
+      <Route
+        path="/"
+        element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <LandingPage />}
+      />
       <Route
         path="*"
         element={
           isLoggedIn ? (
             <>
-              <Navbar loggedInUser={user || { name: 'Guest Guest', designation: 'User'}}/>
+              <Navbar loggedInUser={user || { name: 'Guest Guest', designation: 'User' }} />
               <Layout>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route
-                    path="/dashboard"
-                    element={
-                      <PrivateRoute isAuthenticated={isLoggedIn}>
-                        <Dashboard />
-                      </PrivateRoute>
-                    }
-                  />
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route
                     path="/superadmin"
                     element={
@@ -133,7 +132,7 @@ function App() {
               </Layout>
             </>
           ) : (
-            <Navigate to="/login" replace />
+            <Navigate to="/" replace />
           )
         }
       />
