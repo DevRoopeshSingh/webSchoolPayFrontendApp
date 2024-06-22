@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-const Logout = ({ setIsLoggedIn }) => {
+const Logout = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
-    // Clear any authentication tokens or session data here
-    setIsLoggedIn(false);
+    // Perform logout actions here
+    logout();
 
     // Show the logout successful message for a short period and then navigate to login page
     setTimeout(() => {
       navigate('/login');
     }, 2000); // Adjust the time as needed
-  }, [setIsLoggedIn, navigate]);
+  }, [logout, navigate]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

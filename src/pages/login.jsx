@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoading } from '../Global/LoadingContext';
+import { useAuth } from '../AuthContext';
 
-const Login = ({ setIsLoggedIn, setUser }) => {
+const Login = () => {
   const [credentials, setCredentials] = useState({
     emailOrMobile: '',
     password: '',
@@ -11,6 +12,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
   const { showLoading, hideLoading } = useLoading();
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,9 +30,8 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       // Simulate an API call
       const user = await mockApiLogin(credentials); // Replace this with your actual API call
 
-      // If login is successful, set the user in state and mark as logged in
-      setUser(user);
-      setIsLoggedIn(user);
+      // If login is successful, set the user in context
+      login(user);
 
       // Redirect based on the user's role
       switch (user.role) {
