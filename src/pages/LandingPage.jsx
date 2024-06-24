@@ -6,6 +6,11 @@ const LandingPage = () => {
     <div className="min-h-screen bg-blue-100 flex flex-col justify-between items-center">
       <header className="w-full bg-blue-500 p-4 flex justify-between items-center">
         <h1 className="text-white text-2xl font-bold">School Management System</h1>
+        <div className='px-6 flex justify-between'>
+            <Link to="/about" className='ml-4'>About Us</Link>
+            <Link to="/products" className='ml-4'>Products</Link>
+            <Link to="/contact" className='ml-4'>Contact Us</Link>
+        </div>
         <div>
           <Link to="/signup" className="bg-orange-500 text-white py-2 px-4 rounded-md mx-2">Sign In</Link>
           <Link to="/guest" className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md">Guest Mode</Link>
