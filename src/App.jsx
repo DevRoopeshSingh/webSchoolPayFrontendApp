@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -13,7 +13,7 @@ function App() {
 
   const handleLoginSuccess = (user) => {
     login(user);
-    navigate('/dashboard');
+    navigate(`/${user.role.toLowerCase()}`); // Redirect to the user-specific dashboard
   };
 
   const handleLogout = () => {
@@ -26,7 +26,7 @@ function App() {
       <Route path="/login" element={<Login setIsLoggedIn={handleLoginSuccess} />} />
       <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
       <Route path="/signup" element={<SignUp setIsLoggedIn={handleLoginSuccess} />} />
-      <Route path="/" element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <LandingPage />} />
+      <Route path="/" element={isLoggedIn ? <Navigate to={`/${user.role.toLowerCase()}`} replace /> : <LandingPage />} />
       <Route path="/*" element={isLoggedIn ? <ProtectedRoutes isLoggedIn={isLoggedIn} user={user} /> : <Navigate to="/" replace />} />
     </Routes>
   );

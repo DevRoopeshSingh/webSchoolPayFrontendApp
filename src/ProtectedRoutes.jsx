@@ -21,7 +21,6 @@ const ProtectedRoutes = ({ isLoggedIn, user }) => (
     <Navbar loggedInUser={user || { name: 'Guest Guest', designation: 'User' }} />
     <Layout loggedInUser={user || { name: 'Guest Guest', designation: 'User' }} >
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/superadmin" element={<PrivateRoute isAuthenticated={isLoggedIn}><SuperAdminPage /></PrivateRoute>} />
         <Route path="/admin" element={<PrivateRoute isAuthenticated={isLoggedIn}><AdminDashboard /></PrivateRoute>} />
         <Route path="/teacher" element={<PrivateRoute isAuthenticated={isLoggedIn}><TeacherDashboard /></PrivateRoute>} />

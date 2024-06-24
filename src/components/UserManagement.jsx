@@ -5,139 +5,139 @@ import UserForm from './UserFormComponent';
 
 const UserManagement = () => {
   const initialPeople = [
-    {
-      name: 'Jane Cooper',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Admin',
-      status: 'active',
-      email: 'jane.cooper@example.com',
-      image: 'https://bit.ly/33HnjK0',
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        status: 'active',
+        email: 'jane.cooper@example.com',
+        image: 'https://bit.ly/33HnjK0',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        status:'active',
+        email: 'jane.cooper@example.com',
+        image: 'https://bit.ly/33HnjK0',
+      },
+      {
+        name: 'John Doe',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Tester',
+        status:'active',
+        email: 'john.doe@example.com',
+        image: 'https://bit.ly/3I9nL2D',
+      },
+      {
+        name: 'Veronica Lodge',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Software Engineer',
+        status:'active',
+        email: 'veronica.lodge@example.com',
+        image: 'https://bit.ly/3vaOTe1',
+      },
+      {
+        name: 'Ronny Dillon',
+        title: 'Paradigm Technician',
+        department: 'Optimization',
+        role: 'Teacher',
+        status:'deactive',
+        email: 'veronica.lodge@example.com',
+        image: 'https://bit.ly/3vaOTe1',
+      },{
+        "name": "Ronny Dillon",
+        "title": "Paradigm Technician",
+        "department": "Optimization",
+        "role": "Teacher",
+        "status": "active",
+        "email": "veronica.lodge@example.com",
+        "image": "https://bit.ly/3vaOTe1"
+      },
+      {
+          "name": "Neha Sharma",
+          "title": "Data Analyst",
+          "department": "Analytics",
+          "role": "Analyst",
+          "status": "deactive",
+          "email": "neha.sharma@example.com",
+          "image": "https://bit.ly/3dzB82Z"
+      },
+      {
+          "name": "Raj Singh",
+          "title": "Software Engineer",
+          "department": "Engineering",
+          "role": "Developer",
+          "status": "active",
+          "email": "raj.singh@example.com",
+          "image": "https://bit.ly/3fQNJQm"
+      },
+      {
+        "name": "Rahul Sharma",
+        "title": "Software Engineer",
+        "department": "Development",
+        "role": "Developer",
+        "status": "deactive",
+        "email": "rahul.sharma@example.com",
+        "image": "https://bit.ly/3vaOTe1"
     },
     {
-      name: 'Jane Cooper',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Admin',
-      status:'active',
-      email: 'jane.cooper@example.com',
-      image: 'https://bit.ly/33HnjK0',
-    },
-    {
-      name: 'John Doe',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Tester',
-      status:'active',
-      email: 'john.doe@example.com',
-      image: 'https://bit.ly/3I9nL2D',
-    },
-    {
-      name: 'Veronica Lodge',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Software Engineer',
-      status:'active',
-      email: 'veronica.lodge@example.com',
-      image: 'https://bit.ly/3vaOTe1',
-    },
-    {
-      name: 'Ronny Dillon',
-      title: 'Paradigm Technician',
-      department: 'Optimization',
-      role: 'Teacher',
-      status:'deactive',
-      email: 'veronica.lodge@example.com',
-      image: 'https://bit.ly/3vaOTe1',
+      "name": "Priya Patel",
+      "title": "Data Analyst",
+      "department": "Analytics",
+      "role": "Analyst",
+      "status": "active",
+      "email": "priya.patel@example.com",
+      "image": "https://bit.ly/3vaOTe1"
     },{
-      "name": "Ronny Dillon",
-      "title": "Paradigm Technician",
-      "department": "Optimization",
-      "role": "Teacher",
-      "status": "active",
-      "email": "veronica.lodge@example.com",
-      "image": "https://bit.ly/3vaOTe1"
-  },
-  {
-      "name": "Neha Sharma",
+          "name": "Ronny Dillon",
+          "title": "Paradigm Technician",
+          "department": "Optimization",
+          "role": "Teacher",
+          "status": "active",
+          "email": "veronica.lodge@example.com",
+          "image": "https://bit.ly/3vaOTe1"
+      },
+      {
+          "name": "Neha Sharma",
+          "title": "Data Analyst",
+          "department": "Analytics",
+          "role": "Analyst",
+          "status": "deactive",
+          "email": "neha.sharma@example.com",
+          "image": "https://bit.ly/3dzB82Z"
+      },
+      {
+          "name": "Raj Singh",
+          "title": "Software Engineer",
+          "department": "Engineering",
+          "role": "Developer",
+          "status": "active",
+          "email": "raj.singh@example.com",
+          "image": "https://bit.ly/3fQNJQm"
+      },
+      {
+        "name": "Rahul Sharma",
+        "title": "Software Engineer",
+        "department": "Development",
+        "role": "Developer",
+        "status": "deactive",
+        "email": "rahul.sharma@example.com",
+        "image": "https://bit.ly/3vaOTe1"
+    },
+    {
+      "name": "Priya Patel",
       "title": "Data Analyst",
       "department": "Analytics",
       "role": "Analyst",
-      "status": "deactive",
-      "email": "neha.sharma@example.com",
-      "image": "https://bit.ly/3dzB82Z"
-  },
-  {
-      "name": "Raj Singh",
-      "title": "Software Engineer",
-      "department": "Engineering",
-      "role": "Developer",
       "status": "active",
-      "email": "raj.singh@example.com",
-      "image": "https://bit.ly/3fQNJQm"
-  },
-  {
-    "name": "Rahul Sharma",
-    "title": "Software Engineer",
-    "department": "Development",
-    "role": "Developer",
-    "status": "deactive",
-    "email": "rahul.sharma@example.com",
-    "image": "https://bit.ly/3vaOTe1"
-},
-{
-  "name": "Priya Patel",
-  "title": "Data Analyst",
-  "department": "Analytics",
-  "role": "Analyst",
-  "status": "active",
-  "email": "priya.patel@example.com",
-  "image": "https://bit.ly/3vaOTe1"
-},{
-      "name": "Ronny Dillon",
-      "title": "Paradigm Technician",
-      "department": "Optimization",
-      "role": "Teacher",
-      "status": "active",
-      "email": "veronica.lodge@example.com",
+      "email": "priya.patel@example.com",
       "image": "https://bit.ly/3vaOTe1"
-  },
-  {
-      "name": "Neha Sharma",
-      "title": "Data Analyst",
-      "department": "Analytics",
-      "role": "Analyst",
-      "status": "deactive",
-      "email": "neha.sharma@example.com",
-      "image": "https://bit.ly/3dzB82Z"
-  },
-  {
-      "name": "Raj Singh",
-      "title": "Software Engineer",
-      "department": "Engineering",
-      "role": "Developer",
-      "status": "active",
-      "email": "raj.singh@example.com",
-      "image": "https://bit.ly/3fQNJQm"
-  },
-  {
-    "name": "Rahul Sharma",
-    "title": "Software Engineer",
-    "department": "Development",
-    "role": "Developer",
-    "status": "deactive",
-    "email": "rahul.sharma@example.com",
-    "image": "https://bit.ly/3vaOTe1"
-},
-{
-  "name": "Priya Patel",
-  "title": "Data Analyst",
-  "department": "Analytics",
-  "role": "Analyst",
-  "status": "active",
-  "email": "priya.patel@example.com",
-  "image": "https://bit.ly/3vaOTe1"
-}
+    }
 
   ];
 
@@ -176,6 +176,44 @@ const UserManagement = () => {
     setIsFormOpen(false);
   };
 
+  // Form fields configuration
+  const formFields = [
+    { name: 'first_name', label: 'First Name' },
+    { name: 'middle_name', label: 'Middle Name' },
+    { name: 'last_name', label: 'Last Name' },
+    { name: 'email_id', label: 'Email ID', type: 'email' },
+    { name: 'user_pwd', label: 'Password', type: 'password' },
+    { name: 'user_role_id', label: 'Role', type: 'select', options: [
+        { value: '1', label: 'Super Admin' },
+        { value: '2', label: 'Admin' },
+        { value: '3', label: 'Teacher' },
+        { value: '4', label: 'Student' },
+        { value: '5', label: 'Parent' },
+      ]
+    },
+    { name: 'is_active', label: 'Active', type: 'checkbox' },
+    { name: 'phone_no', label: 'Phone No' },
+    { name: 'permanent_address', label: 'Permanent Address' },
+    { name: 'current_address', label: 'Current Address' },
+    { name: 'dob', label: 'Date of Birth', type: 'date' },
+    { name: 'gender', label: 'Gender', type: 'select', options: [
+        { value: 'M', label: 'Male' },
+        { value: 'F', label: 'Female' },
+        { value: 'O', label: 'Other' },
+      ]
+    },
+    { name: 'created_by', label: 'Created By' },
+    { name: 'modified_by', label: 'Modified By' },
+  ];
+
+  const columns = [
+    { header: 'Name' },
+    { header: 'Title' },
+    { header: 'Status' },
+    { header: 'Role' },
+  ];
+
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-4 flex items-center justify-between">
@@ -197,8 +235,8 @@ const UserManagement = () => {
           <FaPlus className="mr-2" /> Add User
         </button>
       </div>
-      <DataTable people={currentPeople} />
-      {isFormOpen && <UserForm onSave={handleSaveUser} onCancel={handleCancel} />}
+      <DataTable data={currentPeople} columns={columns} />
+      {isFormOpen && <UserForm formData={{}} onSave={handleSaveUser} onCancel={handleCancel} fields={formFields} />}
       
       {/* Pagination Controls */}
       <div className="flex justify-center mt-4">
@@ -221,5 +259,6 @@ const UserManagement = () => {
     </div>
   );
 };
+
 
 export default UserManagement;

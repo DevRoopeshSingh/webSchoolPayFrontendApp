@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EditForm from './EditForm';
 import DataRow from './DataRow';
 
-const DataTable = ({ people }) => {
+const DataTable = ({ data, columns }) => {
   const [editFormData, setEditFormData] = useState(null);
 
   const handleEdit = (rowData) => {
@@ -30,26 +30,19 @@ const DataTable = ({ people }) => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs  font-extrabold  uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-extrabold  uppercase tracking-wider">
-                    Title
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-extrabold uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-extrabold uppercase tracking-wider">
-                    Role
-                  </th>
+                  {columns.map((column, index) => (
+                    <th key={index} scope="col" className="px-6 py-3 text-left text-xs font-extrabold uppercase tracking-wider">
+                      {column.header}
+                    </th>
+                  ))}
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.map((person,index )=> (
-                  <DataRow key={`${person.email}-${index}`} person={person} onEdit={handleEdit} />
+                {data.map((item, index) => (
+                      <DataRow key={index} item={item} columns={columns} onEdit={handleEdit} />
                 ))}
               </tbody>
             </table>
@@ -59,7 +52,7 @@ const DataTable = ({ people }) => {
 
       {/* Edit Form */}
       {editFormData && (
-        <EditForm rowData={editFormData} onSave={handleSave} onCancel={handleCancel} />
+        <EditForm formData={editFormData} onSave={handleSave} onCancel={handleCancel} />
       )}
     </div>
   );
