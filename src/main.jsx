@@ -6,17 +6,19 @@ import './index.css';
 import { ThemeProvider } from "@material-tailwind/react";
 import LoadingSpinner from './Global/LoadingSpinner';
 import { LoadingProvider } from './Global/LoadingContext';
-
+import { AuthProvider } from './AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
       <LoadingProvider>
         <BrowserRouter>
-          <LoadingSpinner /> 
+          <AuthProvider>
+            <LoadingSpinner />
             <App />
-          </BrowserRouter>
-        </LoadingProvider>
-      </ThemeProvider>
-    </React.StrictMode>
+          </AuthProvider>
+        </BrowserRouter>
+      </LoadingProvider>
+    </ThemeProvider>
+  </React.StrictMode>
 );

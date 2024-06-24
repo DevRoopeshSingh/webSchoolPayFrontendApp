@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsPerson } from 'react-icons/bs'; // Importing icons for tabs
 import DashboardOverview from '../components/DashboardOverview';
 import ChildInformation from '../components/ChildInformation';
 import ChildFeeDetails from '../components/ChildFeeDetails';
 import PaymentForm from '../components/PaymentFormPage';
+import ParentComponent from './ParentComponent';
 
 const ParentDashboard = () => {
   const [activeTab, setActiveTab] = useState('childInformation');
@@ -39,6 +40,13 @@ const ParentDashboard = () => {
           >
             Make Payments
           </button>
+          <button
+            onClick={() => handleTabClick('parentInformation')} // Added new tab handler
+            className={`flex items-center bg-white shadow-md rounded-lg p-4 ${activeTab === 'parentInformation' ? 'bg-gray-200 border-b-4 border-yellow-600' : ''}`}
+          >
+            <BsPerson className="text-4xl text-yellow-600 mr-2" />
+            View Parent's Information
+          </button>
         </div>
       </div>
 
@@ -66,6 +74,22 @@ const ParentDashboard = () => {
           <div className="max-w-md mx-auto">
             <h2 className="text-xl font-bold mb-4 text-center">Make Payment</h2>
             <PaymentForm />
+          </div>
+        )}
+
+        {activeTab === 'parentInformation' && (
+          <div>
+            <h2 className="text-xl font-bold mb-4 flex items-center">
+              <BsPerson className="text-2xl text-yellow-600 mr-2" /> View Parent's Information
+            </h2>
+            {/* Replace with your Parent Information component */}
+            <div className="flex justify-center">
+            <div>
+              <p className="text-gray-700">Parent's Information Component</p>
+              </div>
+                <ParentComponent/>
+              
+            </div>
           </div>
         )}
       </div>

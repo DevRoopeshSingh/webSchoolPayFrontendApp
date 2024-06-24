@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoading } from '../Global/LoadingContext';
-import { useAuth } from '../AuthContext';
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({
+const SignUp = ({ setIsLoggedIn, setUser }) => {
+  const [formData, setFormData] = useState({
+    name: '',
     emailOrMobile: '',
     password: '',
   });
@@ -12,12 +12,11 @@ const Login = () => {
   const { showLoading, hideLoading } = useLoading();
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
     }));
   };
@@ -27,11 +26,12 @@ const Login = () => {
     showLoading();
 
     try {
-      // Simulate an API call
-      const user = await mockApiLogin(credentials); // Replace this with your actual API call
+      // Simulate an API call for sign-up
+      const user = await mockApiSignUp(formData); // Replace this with your actual API call
 
-      // If login is successful, set the user in context
-      login(user);
+      // If sign-up is successful, set the user in state and mark as logged in
+      setUser(user);
+      setIsLoggedIn(user);
 
       // Redirect based on the user's role
       switch (user.role) {
@@ -55,15 +55,16 @@ const Login = () => {
           break;
       }
 
-      // Clear the input fields after successful login
-      setCredentials({
+      // Clear the input fields after successful sign-up
+      setFormData({
+        name: '',
         emailOrMobile: '',
         password: '',
       });
       setError('');
     } catch (error) {
-      // Handle login error
-      setError('Invalid email/mobile or password. Please try again.');
+      // Handle sign-up error
+      setError('Failed to sign up. Please try again.');
     } finally {
       hideLoading();
     }
@@ -72,8 +73,21 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-blue-100">
       <div className="w-full max-w-xs bg-white shadow-md rounded-md p-6">
-        <h1 className="text-3xl font-bold mb-4">Login</h1>
+        <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
         <form onSubmit={handleSubmit}>
+          <label className="block mb-2" htmlFor="name">
+            Name:
+            <input
+              id="name"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </label>
           <label className="block mb-2" htmlFor="emailOrMobile">
             Email or Mobile:
             <input
@@ -81,7 +95,7 @@ const Login = () => {
               className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
               type="text"
               name="emailOrMobile"
-              value={credentials.emailOrMobile}
+              value={formData.emailOrMobile}
               onChange={handleChange}
               placeholder="Enter your email or mobile number"
               required
@@ -94,7 +108,7 @@ const Login = () => {
               className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
               type="password"
               name="password"
-              value={credentials.password}
+              value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
               required
@@ -105,59 +119,38 @@ const Login = () => {
             className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 w-full transition duration-300 ease-in-out transform hover:scale-105"
             type="submit"
           >
-            Login
+            Sign Up
           </button>
-          <button
-            className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md mt-2 w-full transition duration-300 ease-in-out transform hover:scale-105"
-            type="button"
-            onClick={() => {
-              // Handle forgot password action here
-              console.log('Forgot password clicked');
-            }}
-          >
-            Forgot Password
-          </button>
+          <p className="text-center mt-4">
+            Already have an account?{' '}
+            <button
+              className="text-blue-500 underline"
+              type="button"
+              onClick={() => navigate('/login')}
+            >
+              Login
+            </button>
+          </p>
         </form>
       </div>
     </div>
   );
 };
 
-// Mock function to simulate API login
-const mockApiLogin = async (credentials) => {
+// Mock function to simulate API sign-up
+const mockApiSignUp = async (formData) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const { emailOrMobile, password } = credentials;
-      if (emailOrMobile === 'superadmin@example.com' && password === 'password') {
+      if (formData.emailOrMobile === 'admin@example.com') {
         resolve({
-          name: 'Super Admin',
-          role: 'SuperAdmin',
-        });
-      } else if (emailOrMobile === 'admin@example.com' && password === 'password') {
-        resolve({
-          name: 'Admin',
+          name: formData.name,
           role: 'Admin',
         });
-      } else if (emailOrMobile === 'teacher@example.com' && password === 'password') {
-        resolve({
-          name: 'Teacher',
-          role: 'Teacher',
-        });
-      } else if (emailOrMobile === 'student@example.com' && password === 'password') {
-        resolve({
-          name: 'Student',
-          role: 'Student',
-        });
-      } else if (emailOrMobile === 'parent@example.com' && password === 'password') {
-        resolve({
-          name: 'Parent',
-          role: 'Parent',
-        });
       } else {
-        reject(new Error('Invalid email/mobile or password'));
+        reject(new Error('Sign-up failed'));
       }
     }, 2000);
   });
 };
 
-export default Login;
+export default SignUp;

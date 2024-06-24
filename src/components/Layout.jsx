@@ -1,28 +1,59 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome,FaChalkboard, FaUserGraduate, FaChalkboardTeacher, FaExclamationCircle, FaCommentDots, FaMoneyBillWave, FaMoneyCheckAlt, FaCog, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaChalkboard, FaUserGraduate, FaChalkboardTeacher, FaExclamationCircle, FaCommentDots, FaMoneyBillWave, FaMoneyCheckAlt, FaCog } from 'react-icons/fa';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, loggedInUser }) => {
+  const location = useLocation();
 
-  const menuItems = [
-    { path: '/', label: 'Dashboard', icon: FaHome },
-    { path: '/classes', label: 'Classes', icon: FaChalkboard },
-    { path: '/students', label: 'Students', icon: FaUserGraduate },
-    { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
-    { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
-    { path: '/complain', label: 'Complaints', icon: FaCommentDots },
-    { path: '/fees', label: 'Fees', icon: FaMoneyBillWave },
-    { path: '/payments', label: 'Payments', icon: FaMoneyCheckAlt },
-    { path: '/settings', label: 'Settings', icon: FaCog },
-  ];
-
-  const loggedInUser = {
-    name: 'John Doe',
-    designation: 'Admin',
-    image: 'https://mdbcdn.b-cdn.net/img/new/avatars/2.webp'
+  // Define menu items based on user roles
+  const getMenuItems = (role) => {
+    switch (role) {
+      case 'Super Admin':
+        return [
+          { path: '/', label: 'Dashboard', icon: FaHome },
+          { path: '/classes', label: 'Classes', icon: FaChalkboard },
+          { path: '/students', label: 'Students', icon: FaUserGraduate },
+          { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
+          { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
+          { path: '/complain', label: 'Complaints', icon: FaCommentDots },
+          { path: '/fees', label: 'Fees', icon: FaMoneyBillWave },
+          { path: '/payments', label: 'Payments', icon: FaMoneyCheckAlt },
+          { path: '/settings', label: 'Settings', icon: FaCog },
+        ];
+      case 'Admin':
+        return [
+          { path: '/', label: 'Dashboard', icon: FaHome },
+          { path: '/classes', label: 'Classes', icon: FaChalkboard },
+          { path: '/students', label: 'Students', icon: FaUserGraduate },
+          { path: '/teachers', label: 'Teachers', icon: FaChalkboardTeacher },
+          { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
+          { path: '/complain', label: 'Complaints', icon: FaCommentDots },
+          { path: '/settings', label: 'Settings', icon: FaCog },
+        ];
+      case 'Teacher':
+        return [
+          { path: '/', label: 'Dashboard', icon: FaHome },
+          { path: '/students', label: 'Students', icon: FaUserGraduate },
+          { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
+        ];
+      case 'Student':
+        return [
+          { path: '/', label: 'Dashboard', icon: FaHome },
+          { path: '/fees', label: 'Fees', icon: FaMoneyBillWave },
+          { path: '/payments', label: 'Payments', icon: FaMoneyCheckAlt },
+        ];
+      case 'Parent':
+        return [
+          { path: '/', label: 'Dashboard', icon: FaHome },
+          { path: '/students', label: 'Students', icon: FaUserGraduate },
+          { path: '/notice', label: 'Notice', icon: FaExclamationCircle },
+        ];
+      default:
+        return [];
+    }
   };
 
-  const location = useLocation();
+  const menuItems = getMenuItems(loggedInUser.role);
 
   const getInitials = (name) => {
     const nameArray = name.split(' ');
